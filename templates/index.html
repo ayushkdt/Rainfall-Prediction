@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainfall Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e9ecef;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            overflow: hidden;
+            padding: 30px;
+            background: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            color: #343a40;
+        }
+        label {
+            margin-top: 15px;
+            font-weight: 500;
+            display: block;
+            color: #495057;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .prediction {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Rainfall Prediction</h2>
+        <form action="/predict" method="POST">
+            <label for="day">Day (1-31)</label>
+            <input type="number" name="day" min="1" max="31" required>
+
+            <label for="pressure">Pressure (hPa)</label>
+            <input type="number" name="pressure" required>
+
+            <label for="maxtemp">Max Temperature (°C)</label>
+            <input type="number" name="maxtemp" required>
+
+            <label for="temperature">Temperature (°C)</label>
+            <input type="number" name="temperature" required>
+
+            <label for="mintemp">Min Temperature (°C)</label>
+            <input type="number" name="mintemp" required>
+
+            <label for="dewpoint">Dew Point (°C)</label>
+            <input type="number" name="dewpoint" required>
+
+            <label for="humidity">Humidity (%)</label>
+            <input type="number" name="humidity" required>
+
+            <label for="cloud">Cloud (density of cloud cover)</label>
+            <input type="number" name="cloud" required>
+
+            <label for="rainfall">Rainfall (mm)</label>
+            <input type="number" name="rainfall" required>
+
+            <label for="sunshine">Sunshine (hours of sunshine recorded for the day)</label>
+            <input type="number" name="sunshine" required>
+
+            <label for="winddirection">Wind Direction (degrees)</label>
+            <input type="number" name="winddirection" required>
+
+            <label for="windspeed">Wind Speed (km/h)</label>
+            <input type="number" name="windspeed" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="prediction">Prediction: {{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
